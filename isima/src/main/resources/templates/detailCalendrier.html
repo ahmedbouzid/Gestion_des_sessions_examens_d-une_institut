@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+    <html lang="en" xmlns:th="http://www.thymeleaf.org" >
+    <head>
+    <meta charset="utf-8">
+    <title>ISIMA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Styles -->
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel='stylesheet' id='prettyphoto-css'  th:href="@{/css/prettyPhoto.css}" type='text/css' media='all'>
+    <link th:href="@{/css/fontello.css}" type="text/css" rel="stylesheet">
+	<link th:href="@{/css/ajoutEnsei.css}"  type="text/css" rel="stylesheet">
+
+    <!--[if lt IE 7]>
+            <link href="css/fontello-ie7.css" type="text/css" rel="stylesheet">  
+        <![endif]-->
+    <!-- Google Web fonts -->
+    <link th:href='@{http://fonts.googleapis.com/css?family=Quattrocento:400,700}' rel='stylesheet' type='text/css'>
+    <link th:href='@{http://fonts.googleapis.com/css?family=Patua+One}' rel='stylesheet' type='text/css'>
+    <link th:href='@{http://fonts.googleapis.com/css?family=Open+Sans}' rel='stylesheet' type='text/css'>
+    <style>
+
+	table {
+border:3px solid #6495ed;
+border-collapse:collapse;
+width:90%;
+margin:auto;
+}
+thead, tfoot {
+background-color:#D0E3FA;
+background-image:url(sky.jpg);
+border:1px solid #6495ed;
+}
+tbody {
+background-color:#FFFFFF;
+border:1px solid #6495ed;
+}
+th {
+font-family:monospace;
+border:1px dotted #6495ed;
+padding:5px;
+background-color:#EFF6FF;
+width:25%;
+}
+td {
+font-family:sans-serif;
+font-size:80%;
+border:1px solid #6495ed;
+padding:5px;
+text-align:left;
+}
+caption {
+font-family:sans-serif;
+}
+</style>
+    </head>
+    <body>
+    <div class="navbar-wrapper">
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+            <h1 class="brand"><a th:href="@{/}">ISIMA</a></h1>
+            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+            <nav class="pull-right nav-collapse collapse">
+              <ul id="menu-main" class="nav">
+               <li><a title="ACCEUIL" th:href="@{/}">ACCEUIL</a></li>
+                <li><a title="EXAMEN" th:href="@{/examen/fichierExamen}">EXAMEN</a></li>
+                <li><a title="ENSEIGNANT" th:href="@{/enseignant/fichieEnseignant}">ENSEIGNANT</a></li>
+                <li><a title="SALLE" th:href="@{/salle/fichierSalle}">SALLE</a></li>
+                <li><a title="MATIERE" th:href="@{/matiere/fichierMatiere}">MATIERE</a></li>
+				<li><a title="Calendrier" th:href="@{/calendrier/fichierCalendrier}">CALENDRIER</a></li>
+
+
+
+                <li><a title="Déconnexion" th:href="@{/logout}">DECONNEXION</a></li>
+              </ul>
+            </nav>
+          </div>
+          <!-- /.container -->
+        </div>
+        <!-- /.navbar-inner -->
+      </div>
+      <!-- /.navbar -->
+    </div>
+    <!-- /.navbar-wrapper -->
+    <div id="top"></div>
+	<br>
+	
+	<form action="#" th:object="${calendrier}">
+	<p><i>Complétez le formulaire. Les champs marqué par </i><em>*</em> sont <em>obligatoires</em></p>
+    <legend>Calendrier des examens</legend> 
+<table border="1">
+  <caption th:text="${calendrier.nom}">
+</caption>
+
+  <thead>
+    <tr>
+     <th>Date</th>
+     <th>Heure</th>
+     <th>Matière</th>
+     <th>Durée</th>
+    </tr>
+  </thead>
+   <tbody>
+    <tr>
+	     <th rowspan="2">Lundi</th>
+	     <td th:text="${calendrier.examens.size() >= 1 ? calendrier.examens[0].horaire : ''}"></td>
+	     <td th:text="${calendrier.examens.size() >= 1 ? calendrier.examens[0].matiere.nomMatiere : ''}" ></td> 
+	     <td th:text="${calendrier.examens.size() >= 1 ? calendrier.examens[0].duree : ''}"></td>
+    </tr>
+    <tr>
+	   	<td th:text="${calendrier.examens.size() >= 2 ? calendrier.examens[1].horaire : ''}"></td>
+     	<td th:text="${calendrier.examens.size() >= 2 ? calendrier.examens[1].matiere.nomMatiere : ''}"></td>
+     	<td colspan="1"  th:text="${calendrier.examens.size() >= 2 ? calendrier.examens[1].duree : ''}"></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+     	<th rowspan="2" >Mardi</th>
+     	<td th:text="${calendrier.examens.size() >= 3 ? calendrier.examens[2].horaire : ''}"></td>
+     	<td th:text="${calendrier.examens.size() >= 3 ? calendrier.examens[2].matiere.nomMatiere : ''}"></td>
+     	<td th:text="${calendrier.examens.size() >= 3 ? calendrier.examens[2].duree : ''}"></td>
+    </tr>
+    <tr>
+	   	<td th:text="${calendrier.examens.size() >= 4 ? calendrier.examens[3].horaire : ''}"></td>
+		<td th:text="${calendrier.examens.size() >= 4 ? calendrier.examens[3].matiere.nomMatiere : ''}"></td>
+     <td colspan="1" th:text="${calendrier.examens.size() >= 4 ? calendrier.examens[3].duree : ''}"></td>
+    </tr>
+  </tbody>
+   <tbody>
+   <!-- 
+   ne9sa
+    -->
+    <tr>
+     	<th rowspan="2" >Mercredi</th>
+     	<td th:text="${calendrier.examens.size() >= 5 ? calendrier.examens[4].horaire : ''}"></td>
+     	<td th:text="${calendrier.examens.size() >= 5 ? calendrier.examens[4].matiere.nomMatiere : ''}"></td>
+     	<td th:text="${calendrier.examens.size() >= 5 ? calendrier.examens[4].duree : ''}"></td>
+    </tr>
+    <tr>
+	   	<td th:text="${calendrier.examens.size() >= 6 ? calendrier.examens[5].horaire : ''}"></td>
+		<td th:text="${calendrier.examens.size() >= 6 ? calendrier.examens[5].matiere.nomMatiere : ''}"></td>
+     <td colspan="1" th:text="${calendrier.examens.size() >= 6 ? calendrier.examens[5].duree : ''}"></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+     	<th rowspan="2" >Jeudi</th>
+     	<td th:text="${calendrier.examens.size() >= 7 ? calendrier.examens[6].horaire : ''}"></td>
+     	<td th:text="${calendrier.examens.size() >= 7 ? calendrier.examens[6].matiere.nomMatiere : ''}"></td>
+     	<td th:text="${calendrier.examens.size() >= 7 ? calendrier.examens[6].duree : ''}"></td>
+    </tr>
+    <tr>
+	   	<td th:text="${calendrier.examens.size() >= 8 ? calendrier.examens[7].horaire : ''}"></td>
+		<td th:text="${calendrier.examens.size() >= 8 ? calendrier.examens[7].matiere.nomMatiere : ''}"></td>
+     <td colspan="1" th:text="${calendrier.examens.size() >= 8 ? calendrier.examens[7].duree : ''}"></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+     	<th rowspan="2" >Vendredi</th>
+     	<td th:text="${calendrier.examens.size() >= 9 ? calendrier.examens[8].horaire : ''}"></td>
+     	<td th:text="${calendrier.examens.size() >= 9 ? calendrier.examens[8].matiere.nomMatiere : ''}"></td>
+     	<td th:text="${calendrier.examens.size() >= 9 ? calendrier.examens[8].duree: ''}"></td>
+    </tr>
+    <tr>
+	   	<td th:text="${calendrier.examens.size() >= 10 ? calendrier.examens[9].horaire : ''}"></td>
+		<td th:text="${calendrier.examens.size() >= 10 ? calendrier.examens[9].matiere.nomMatiere : ''}"></td>
+     <td colspan="1" th:text="${calendrier.examens.size() >= 10 ? calendrier.examens[9].duree : ''}"></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+     	<th rowspan="2" >Samedi</th>
+     	<td th:text="${calendrier.examens.size() >= 11 ? calendrier.examens[10].horaire : ''}"></td>
+     	<td th:text="${calendrier.examens.size() >= 11 ? calendrier.examens[10].matiere.nomMatiere : ''}"></td>
+     	<td th:text="${calendrier.examens.size() >= 11 ? calendrier.examens[10].duree : ''}"></td>
+    </tr>
+    <tr>
+	   	<td th:text="${calendrier.examens.size() >= 12 ? calendrier.examens[11].horaire : ''}"></td>
+		<td th:text="${calendrier.examens.size() >= 12 ? calendrier.examens[11].matiere.nomMatiere : ''}"></td>
+     <td colspan="1" th:text="${calendrier.examens.size() >= 12 ? calendrier.examens[11].duree : ''}"></td>
+    </tr>
+  </tbody>
+</table>
+ 
+<a href="">
+   <img src="240_F_25194541_lCELBdDKNlSrwVPF7pnzznbMkKu3FSlq.jpg"  align ="center" width="50" height="40"  />
+	
+	</BODY>
+	</HTML>

@@ -1,0 +1,377 @@
+<!DOCTYPE HTML>
+    <html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+    <meta charset="utf-8">
+    <title>ISIMA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Styles -->
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel='stylesheet' id='prettyphoto-css'  th:href="@{/css/prettyPhoto.css}" type='text/css' media='all'>
+    <link th:href="@{/css/fontello.css}" type="text/css" rel="stylesheet">
+	<link th:href="@{/css/AjoutEnsei.css}"  type="text/css" rel="stylesheet">
+
+    <!--[if lt IE 7]>
+            <link href="css/fontello-ie7.css" type="text/css" rel="stylesheet">  
+        <![endif]-->
+    <!-- Google Web fonts -->
+    <link th:href='@{http://fonts.googleapis.com/css?family=Quattrocento:400,700}' rel='stylesheet' type='text/css'>
+    <link th:href='@{http://fonts.googleapis.com/css?family=Patua+One}' rel='stylesheet' type='text/css'>
+    <link th:href='@{http://fonts.googleapis.com/css?family=Open+Sans}' rel='stylesheet' type='text/css'>
+    
+	<style>
+	
+	table {
+border:3px solid #6495ed;
+border-collapse:collapse;
+width:90%;
+margin:auto;
+}
+thead, tfoot {
+background-color:#D0E3FA;
+background-image:url(sky.jpg);
+border:1px solid #6495ed;
+}
+tbody {
+background-color:#FFFFFF;
+border:1px solid #6495ed;
+}
+th {
+font-family:monospace;
+border:1px dotted #6495ed;
+padding:5px;
+background-color:#EFF6FF;
+width:25%;
+}
+td {
+font-family:sans-serif;
+font-size:80%;
+border:1px solid #6495ed;
+padding:5px;
+text-align:left;
+}
+caption {
+font-family:sans-serif;
+}
+</style>
+    </head>
+    <body>
+    <div class="navbar-wrapper">
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+            <h1 class="brand"><a href="Acceuil.html">ISIMA</a></h1>
+            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+            <nav class="pull-right nav-collapse collapse">
+              <ul id="menu-main" class="nav">
+               <li><a title="ACCEUIL" th:href="@{/}">ACCEUIL</a></li>
+                <li><a title="EXAMEN" th:href="@{/examen/form}">EXAMEN</a></li>
+                <li><a title="ENSEIGNANT" th:href="@{/enseignant/form}">ENSEIGNANT</a></li>
+                <li><a title="SALLE" th:href="@{/salle/fichierSalle}">SALLE</a></li>
+                <li><a title="MATIERES" th:href="@{/matiere/form}" >MATIERE</a></li>
+                
+				<li><a title="Calendrier" th:href="@{/calendrier/fichierCalendrier}">CALENDRIER</a></li>
+				<li><a title="Fiche de Suivie" th:href="@{/fichSuivie/fichierFichSuivie}">Fich Suivie</a></li>
+                <li><a title="contact" th:href="@{/logout}">DECONNEXION</a></li>
+              </ul>
+            </nav>
+          </div>
+          <!-- /.container -->
+        </div>
+        <!-- /.navbar-inner -->
+      </div>
+      <!-- /.navbar -->
+    </div>
+    <!-- /.navbar-wrapper -->
+    <div id="top"></div>
+	<br>
+	<form action="#">
+  <p><i>Complétez le formulaire. Les champs marqué par </i><em>*</em> sont <em>obligatoires</em></p>
+    <legend>Fiche de suivie </legend> 
+<table>
+      <caption>
+Calendrier Des  Surveillances 
+</caption>
+
+  <thead>
+    <tr>
+     <th>Date</th>
+     <th>Heure</th>
+     <th>Matiere</th>
+     <th>Niveau</th>
+	 <th>Salle</th>
+     <th>Enseignants</th>
+     <th>Signanture d'entrée</th>
+     <th>Nbr de copie</th>
+	 <th>signature de sortie</th>
+	 
+
+
+    </tr>
+  </thead>
+
+  
+
+  
+
+   <tbody>
+    <tr>
+     <th rowspan="8">Lundi 11/06/2019 </th>
+     <td rowspan="8">du 9:00 à 10:00</td>
+     <td rowspan="4" th:text="${listExamen.size() >= 1 ? listExamen[0].matiere.nomMatiere : ''}"></td>
+     <td rowspan="4" th:text="${listExamen.size() >= 1 ? listExamen[0].filiere : ''}"> LAI 2</td>
+	 <td rowspan="4" th:text="${listExamen.size() >= 1 ? listExamen[0].salle.numSalle : ''}"> A1</td>
+
+    </tr>
+    <tr th:each=" enseignant:  ${listExamen[0].enseignants">
+	     <td th:text="${enseignant.nom}">Anis Hadj said</td>
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+    <tr><tr>
+	     <td>Amal Zardi</td>
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+    <tr>
+	     <td>Omar houaoui</td>
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+   
+  </tbody>
+  <tbody>
+    <tr>
+     <tbody>
+    <tr>
+     <th rowspan="5">Lundi 11/06/2019 </th>
+     <td rowspan="5">du 9:00 à 10:30</td>
+     <td rowspan="5">Conception</td>
+     <td rowspan="5"> LFI 2</td>
+	 <td rowspan="5"> AMPHI A</td>
+
+    </tr>
+    <tr>
+	     <td>Hedi yezid</td>
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+    <tr> 
+	     <td>Hamdi aloulou</td>
+		 
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+    <tr>
+	     <td>Wafa Bousallaa</td>
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+    <tr> 
+	     <td>Hajer ben salem</td>
+		 
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+   
+  </tbody>
+   <tbody>
+    <tr>
+     <tbody>
+    <tr>
+     <th rowspan="5">Lundi 11/06/2019 </th>
+     <td rowspan="5">du 9:00 à 10:30</td>
+     <td rowspan="5">Culture d'entreprise</td>
+     <td rowspan="5"> ARS 2</td>
+	 <td rowspan="5"> AMPHI B</td>
+
+    </tr>
+    <tr>
+	     <td>Amal zidi</td>
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+    <tr> 
+	     <td>Oussama hadj Kacem</td>
+		 
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+    <tr>
+	     <td>Wael Salemi</td>
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+    <tr> 
+	     <td>Sabeur Ksontini</td>
+		 
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+   
+  </tbody> 
+    <tbody>
+    <tr>
+     <th rowspan="8">Lundi 11/06/2019 </th>
+     <td rowspan="5">du 11:00 à 12:30</td>
+     <td rowspan="4">Anglais</td>
+     <td rowspan="4"> LAI 2</td>
+	 <td rowspan="4"> A1</td>
+
+    </tr>
+    <tr>
+	     <td>Hedi yezid</td>
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+    <tr>
+	     <td>Baya Zardi</td>
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+    <tr>
+	     <td>Omar houaoui</td>
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+   
+  </tbody>
+  <tbody>
+    <tr>
+     <tbody>
+    <tr>
+     <th rowspan="5">Lundi 11/06/2019 </th>
+     <td rowspan="5">du 11:00 à 12:30</td>
+     <td rowspan="5">Anglais</td>
+     <td rowspan="5"> LFI 2</td>
+	 <td rowspan="5"> AMPHI A</td>
+
+    </tr>
+    <tr>
+	     <td>Anis Hadj said</td>
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+    <tr> 
+	     <td>Hamdi aloulou</td>
+		 
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+    <tr>
+	     <td>Amal zidi</td>
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+    <tr> 
+	     <td>Oussama hadj Kacem</td>
+		 
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+   
+  </tbody>
+   <tbody>
+    <tr>
+     <tbody>
+    <tr>
+     <th rowspan="5">Lundi 11/06/2019 </th>
+     <td rowspan="5">du 11:00 à 12:30</td>
+     <td rowspan="5">Anglais</td>
+     <td rowspan="5"> ARS 2</td>
+	 <td rowspan="5"> AMPHI B</td>
+
+    </tr>
+    <tr>
+	     <td>Wafa Bousallaa</td>
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+    <tr> 
+	     <td> Hajer Ben Salem</td>
+		 
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+    <tr>
+	     <td>Wael Salemi</td>
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+    <tr> 
+	     <td>Sabeur Ksontini</td>
+		 
+		 <td></td>
+		 <td></td>
+		 <td></td>
+
+   </tr>
+   <tr>
+   <a href="">
+   <img src="240_F_25194541_lCELBdDKNlSrwVPF7pnzznbMkKu3FSlq.jpg"  align ="center" width="50" height="40"  />
+   </tr>
+   
+  </tbody> 
+   
+</table>
+
+ 
+    
+ 
+  
+  </form> 
+  </div>
+  </div>
+
+   <br>   <br>   <br>
+
+
+	
+	</BODY>
+	</HTML>

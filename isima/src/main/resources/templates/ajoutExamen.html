@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
+   <head>
+    <meta charset="utf-8">
+    <title>ISIMA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Styles -->
+   <link href="css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet">
+    <link href="css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel='stylesheet' id='prettyphoto-css'  href="css/prettyPhoto.css" th:href="@{/css/prettyPhoto.css}" type='text/css' media='all'>
+    <link href="css/fontello.css" th:href="@{/css/fontello.css}" type="text/css" rel="stylesheet">
+	<link href="css/ajoutEnsei.css"  th:href="@{/css/ajoutEnsei.css}"type="text/css" rel="stylesheet">
+
+	<link rel="stylesheet" th:href="@{http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/base/jquery-ui.css}" type="text/css" media="all" />
+       <link rel="stylesheet" th:href="@{http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css}" type="text/css" media="all" />
+
+       <script th:src="@{http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js}" type="text/javascript"></script>
+       <script th:src="@{http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/jquery-ui.min.js}" type="text/javascript"></script>
+
+    <!--[if lt IE 7]>
+            <link href="css/fontello-ie7.css" type="text/css" rel="stylesheet">  
+        <![endif]-->
+    <!-- Google Web fonts -->
+    <link th:href='@{http://fonts.googleapis.com/css?family=Quattrocento:400,700}'rel='stylesheet' type='text/css'>
+    <link th:href='@{http://fonts.googleapis.com/css?family=Patua+One}' rel='stylesheet' type='text/css'>
+    <link th:href='@{http://fonts.googleapis.com/css?family=Open+Sans}'  rel='stylesheet' type='text/css'>
+ <style>
+   input[type=submit] {
+  background-color: #0693cd;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-size:16px;
+  font-weight: bold;
+  line-height: 1.4;
+  padding: 10px;
+  width: 180px
+
+		}
+    </style>
+ </head>
+    <body>
+    <div class="navbar-wrapper">
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+            <h1 class="brand"><a th:href="@{/}">ISIMA</a></h1>
+            <nav class="pull-right nav-collapse collapse">
+              <ul id="menu-main" class="nav">
+                <li><a title="ACCEUIL" th:href="@{/}">ACCEUIL</a></li>
+                <li><a title="EXAMEN" th:href="@{/examen/form}">EXAMEN</a></li>
+                <li><a title="ENSEIGNANT" th:href="@{/enseignant/form}">ENSEIGNANT</a></li>
+                <li><a title="SALLE" th:href="@{/salle/form}">SALLE</a></li>
+                <li><a title="MATIERES" th:href="@{/matiere/form}">MATIERE</a></li>
+                
+				<li><a title="CALEENDRIER" th:href="@{/calendrier/fichierCalendrier}">CALENDRIER</a></li>
+				<li><a title="Fiche de Suivie" th:href="@{/fichSuivie/fichierFichSuivie}">Fich Suivie</a></li>
+				<!--  ainsi de suite kamlouha ba3d -->
+                <li><a title="Déconnexion" th:href="@{/logout}">DECONNEXION</a></li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="top"></div>
+	<br>
+	<br>
+<form th:action="@{/examen/saveExamen}" method="post" th:object="${examen}">
+<div class="form-group">
+	<input type="hidden" th:field="*{id}" class="form-control" />
+</div>
+<table>  
+<tr>
+<td></td>
+<td></td>
+<br/>
+<br/>
+<br/>
+<br/>
+</tr>
+       <tr>
+           <td> <label for="typeSession">Type session </label> </td>
+   <td>
+         <select id="sessionRef" name="typeSession" th:field="*{typeSession}" style="width: 279px;height:30px; margin-top:1%;margin-left: 0.8%" >
+ 	     <option th:value="'DS'" selected> DS</option>
+	     <option th:value="'EXAMEN'"> EXAMEN </option>
+        </select>
+  </td>
+     	<tr>
+		<td width="180">Fili&egrave;re :</td>
+		     <td>
+		    <!--webbot bot="SaveResults" U-File="C:\Users\Amine\Desktop\design\_private\form_results.csv" S-Format="TEXT/CSV" S-Label-Fields="TRUE" -->
+			<p><select size="1" name="Fili&egrave;re" th:field="*{filiere}" style="width: 279px;height:30px; margin-top:1%;margin-left: 0.8%">
+			<option th:value="LAI" selected>LAI</option>
+			<option th:value="LFI">LFI</option>
+			<option th:value="LARS">LARS</option>
+			</select></p>
+&nbsp;
+           </td>
+     </tr>
+		<td width="180">Groupe :</td>
+		<td><input name="Groupe "type="text" th:field="*{groupe}" style="width: 279px;height:30px; margin-top:1%;margin-left: 0.8%" ></td>
+</tr>
+     </tr>
+	<tr>
+		<td >Matiere </td>
+		<td>
+			<select class="form-control" th:field="*{matiere}"  style="width: 279px;height:30px; margin-top:1%;margin-left: 0.8%">
+		        <option th:each="matiere : ${listMatieres}"
+		                th:value="${matiere.id}" 
+		                th:text="${matiere.nomMatiere}"
+		                >                  
+		        </option>
+			</select>
+		</td>
+	</tr>
+	<tr th:if="${modif} == FALSE ">
+		<td width="180">Salle :</td>
+		<td>
+			<select name="selectedSalle" class="form-control" th:field="*{salle}" style="width: 279px;height:30px; margin-top:1%;margin-left: 0.8%">
+		        <option th:each="salleElement : ${listSalles}"
+		                th:value="${salleElement.id}" 
+		                th:text="${salleElement.numSalle}">                  
+		        </option>
+			</select>
+			
+		</td>
+		<td th:if="${erreurSalleUsedInHoraire ==true}" style="color:red">
+		Cette salle est déja réservée pour cette horaire, vous ne pouvez pas la supprimer !
+		</td>
+	</tr>
+	<div th:if="${modif} == TRUE">
+	<input  type="hidden" th:field="*{salle}" th:value="${salleModal}" />
+	</div>
+		<td width="180">Enseignants :</td>
+		<td>
+			<select multiple="multiple" class="form-control" th:field="*{enseignants}" style="width: 279px;height:30px; margin-top:1%;margin-left: 0.8%">
+		        <option th:each="enseignant : ${listEnseignants}"
+		                th:value="${enseignant.id}" 
+		                th:text="${enseignant.nom}">                  
+		        </option>
+			</select>
+			
+		</td>
+	<tr>
+		<td width="180">Dur&eacute;e :</td>
+		<td>
+			<!--webbot bot="SaveResults" U-File="C:\Users\Amine\Desktop\design\_private\form_results.csv" S-Format="TEXT/CSV" S-Label-Fields="TRUE" -->
+			<p><select id="refDuree" size="1" name="D1" th:field="*{duree}" style="width: 279px;height:30px; margin-top:1%;margin-left: 0.8%">
+				<option th:value="''" selected>Select type session</option>
+				</select>
+			</p>
+		</td>
+	</tr>
+<tr>
+ <td><label for="horaire">Horaire<em>*</em></label></td>
+<td>
+	<select id="refHoraire" name="horaire" th:field="*{horaire}" style="width: 279px;height:30px; margin-top:1%;margin-left: 0.8%">
+			
+			<option th:value="''" selected> Select a session first</option>
+	</select>
+</td>
+</tr>
+<tr>
+		<td width="180">Date:</td>
+		<td>
+			<input id="datepicker" th:field="*{date}" type="text" size="25" style="width: 279px;height:30px; margin-top:1%;margin-left: 0.8%" />
+  		</td>
+</tr>
+
+<tr th:if="${modif} == FALSE ">
+		<td th:if="${erreurSalleUsedInHoraire ==true}" style="color:red">
+		Cette salle est déja réservée pour cette horaire.
+		</td>
+	</tr>
+ 
+</table>
+	
+<input th:if="${modif} == FALSE" type="submit"  value="Ajouter">
+	<input th:if="${modif} == TRUE" type="submit" value="Modifier">
+	
+	<div align="Right">
+    <a th:href="@{/examen/fichierExamen}"/>
+   <h3> Pour consulter votre liste d'examens Cliqué ICI !! </h3>
+   </div>
+</form>
+     <script>
+			$(function() {
+				$( "#datepicker" ).datepicker();
+			});
+	</script>
+
+	<script>
+	$('#sessionRef').change(
+			function() {
+				getHoraireFunction($(this).val());
+				 
+	        });
+	function getHoraireFunction(input) {
+		$.getJSON("http://localhost:8082/examen/listHoraire", {
+			dsOrExamen : input,
+			ajax: 'true'
+		}, function(data) {
+            var html = '';
+            var html2 = '';
+            var len = data.length;
+            for ( var i = 0; i < len; i++) {
+                html += '<option th:value="' + data[i] + '">'
+                        + data[i] + '</option>';
+            }
+            if (input == 'DS')
+            	html2 += '<option th:value="1H"> 1H </option>'
+            	else 
+            		html2 += '<option th:value="1.5H"> 1.5H </option>'
+            html += '</option>';
+            html2 += '</option>';
+            $('#refHoraire').html(html);
+            $('#refDuree').html(html2);
+        });
+	};
+	
+	</script>
+
+
+   </body>
+</html>

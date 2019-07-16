@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+    <html lang="en" xmlns:th="http://www.thymeleaf.org" >
+    <head>
+    <meta charset="utf-8">
+    <title>ISIMA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Styles -->
+   <link href="css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet">
+    <link href="css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel='stylesheet' id='prettyphoto-css'  href="css/prettyPhoto.css" th:href="@{/css/prettyPhoto.css}" type='text/css' media='all'>
+    <link href="css/fontello.css" th:href="@{/css/fontello.css}" type="text/css" rel="stylesheet">
+	<link href="css/ajoutEnsei.css"  th:href="@{/css/ajoutEnsei.css}"type="text/css" rel="stylesheet">
+
+    <!--[if lt IE 7]>
+            <link href="css/fontello-ie7.css" type="text/css" rel="stylesheet">  
+        <![endif]-->
+    <!-- Google Web fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Quattrocento:400,700' th:href='@{http://fonts.googleapis.com/css?family=Quattrocento:400,700}'rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Patua+One' th:href='@{http://fonts.googleapis.com/css?family=Patua+One}' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans'th:href='@{http://fonts.googleapis.com/css?family=Open+Sans}'  rel='stylesheet' type='text/css'>
+   <style>
+   input[type=submit] {
+  background-color: #0693cd;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-size:16px;
+  font-weight: bold;
+  line-height: 1.4;
+  padding: 10px;
+  width: 180px
+
+		}
+    </style>	
+ </head>
+    <body>
+    <div class="navbar-wrapper">
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+            <h1 class="brand"><a th:href="@{/}">ISIMA</a></h1>
+            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+            <nav class="pull-right nav-collapse collapse">
+              <ul id="menu-main" class="nav">
+              <li><a title="ACCEUIL" th:href="@{/}">ACCEUIL</a></li>
+                <li><a title="EXAMEN" th:href="@{/examen/form}">EXAMEN</a></li>
+                <li><a title="ENSEIGNANT" th:href="@{/enseignant/form}">ENSEIGNANT</a></li>
+                <li><a title="SALLE" th:href="@{/salle/form}">SALLE</a></li>
+                <li><a title="MATIERES" th:href="@{/matiere/form}" >MATIERE</a></li>
+                
+				<li><a title="Calendrier" th:href="@{/calendrier/fichierCalendrier}">CALENDRIER</a></li>
+
+                <li><a title="Déconnexion" th:href="@{/logout}">DECONNEXION</a></li>
+              </ul>
+            </nav>
+          </div>
+          <!-- /.container -->
+        </div>
+        <!-- /.navbar-inner -->
+      </div>
+      <!-- /.navbar -->
+    </div>
+    <!-- /.navbar-wrapper -->
+    <div id="top"></div>
+	<br>
+<form th:action="@{saveMatiere}" method="post" th:object="${matiere}">
+  <p><i>Complétez le formulaire. Les champs marqué par </i><em>*</em> sont <em>obligatoires</em></p>
+    <legend>Matiere</legend>
+<div class="form-group">
+	<input type="hidden" th:field="*{id}" class="form-control" />
+</div>
+<table>
+       
+       <tr>
+	       <td> Nom Matiere : </td>
+	       <td> <input type="text" name="nomMatiere" th:field="*{nomMatiere}"></td>
+	  </tr>
+	
+	<tr th:if="${modif} == FALSE ">
+		<td width="180">Enseignant :</td>
+		<td>
+			<select class="form-control" th:field="*{enseignant}" style="width: 279px;height:30px; margin-top:1%;margin-left: 0.8%">
+		        <option th:each="enseignantElement : ${listEnseignants}"
+		                th:value="${enseignantElement.id}" 
+		                th:text="${enseignantElement.nom}">                  
+		        </option>
+			</select>
+			
+		</td>
+	</tr>
+	
+	
+     <tr> 
+		<td> Coefficiant </td>
+		<td> <input type="text" name="coe" th:field="*{coe}"></td>
+	</tr>
+	
+	<tr> 
+		<td>  Filiere</td>
+		<!--  <td>  
+			<select  name="Fili&egrave;re" th:field="*{filiere}" >
+				<option th:value="'LAI'" th:text="LAI">LAI</option>
+				<option th:value="'LFI'" th:text="LAI">LAI</option>
+				<option th:value="'LARS'" th:text="LAI">LAI</option>
+			</select>
+		</td>
+		-->
+	<td>  <input id="LAI" th:field="*{filiere}" type="radio" name="g" value="LAI"/> LAI</td>
+	<td> <input id="LARS"   th:field="*{filiere}" type="radio" name="g" value="LARS"/> LARS</td>
+	<td> <input id="LFI "  th:field="*{filiere}"  type="radio" name="g" value="LFI"/> LFI</td> 
+	</tr>
+<tr> 
+		<td> Niveau </td>
+		<td> <input type="text" name="niveau" th:field="*{niveau}"></td>
+	</tr>
+		
+		
+	
+	
+	</table>
+	<input th:if="${modif} == FALSE" type="submit"  value="Ajouter">
+	<input th:if="${modif} == TRUE" type="submit" value="Modifier">
+ </form>
+  <div align="Right">
+  
+    <a th:href="@{/matiere/fichierMatiere}"/>
+   <h3> Pour Consulter liste des Matières Cliqué ICI </h3>
+   </div>
+  </body>
+  </html>

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+    <html lang="en" xmlns:th="http://www.thymeleaf.org" >
+    <head>
+    <meta charset="utf-8">
+    <title>ISIMA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Styles -->
+   <link href="css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet">
+    <link href="css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel='stylesheet' id='prettyphoto-css'  href="css/prettyPhoto.css" th:href="@{/css/prettyPhoto.css}" type='text/css' media='all'>
+    <link href="css/fontello.css" th:href="@{/css/fontello.css}" type="text/css" rel="stylesheet">
+	<link href="css/ajoutEnsei.css"  th:href="@{/css/ajoutEnsei.css}"type="text/css" rel="stylesheet">
+
+    <!--[if lt IE 7]>
+            <link href="css/fontello-ie7.css" type="text/css" rel="stylesheet">  
+        <![endif]-->
+    <!-- Google Web fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Quattrocento:400,700' th:href='@{http://fonts.googleapis.com/css?family=Quattrocento:400,700}'rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Patua+One' th:href='@{http://fonts.googleapis.com/css?family=Patua+One}' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans'th:href='@{http://fonts.googleapis.com/css?family=Open+Sans}'  rel='stylesheet' type='text/css'>
+ </head>
+    <body>
+    <div class="navbar-wrapper">
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+            <h1 class="brand"><a href="Acceuil.html">ISIMA</a></h1>
+            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+            <nav class="pull-right nav-collapse collapse">
+              <ul id="menu-main" class="nav">
+               <li><a title="portfolio" href="Acceuil.html">ACCEUIL</a></li>
+                <li><a title="services" href="AjoutExamen.html">EXAMEN</a></li>
+                <li><a title="news" th:href="@{/form}">ENSEIGNANT</a></li>
+                <li><a title="team" href="salle.html">SALLE</a></li>
+				<li><a title="team" href="Groupe d'examen.html">Groupe d'examen</a></li>
+
+                <li><a title="Déconnexion" th:href="@{/logout}">DECONNEXION</a></li>
+              </ul>
+            </nav>
+          </div>
+          <!-- /.container -->
+        </div>
+        <!-- /.navbar-inner -->
+      </div>
+      <!-- /.navbar -->
+    </div>
+    <!-- /.navbar-wrapper -->
+    <div id="top"></div>
+	<br>
+<form th:action="@{UpdateEnseignant}"  th:object="${enseignant}">
+  <p><i>Complétez le formulaire. Les champs marqué par </i><em>*</em> sont <em>obligatoires</em></p>
+    <legend>Enseignant</legend>
+<div class="form-group" style="margin-left: 3%">
+		<label for="nom">ID <em>*</em></label>
+	    <input type="text" class="form-control" style="width: 279px;height:30px; margin-top:0.5%;margin-left: 0.8%" th:field="*{ID}" id="nom" placeholder="Mr Riadh" required=""/>
+	</div>
+	<div class="form-group" style="margin-left: 3%">
+		<label for="nom">Nom <em>*</em></label>
+	    <input type="text" class="form-control" style="width: 279px;height:30px; margin-top:0.5%;margin-left: 0.8%" th:field="*{nom}" id="nom" placeholder="Mr Riadh" required=""/>
+	</div>
+	</br>
+    <div class="form-group" style="margin-left: 3%">
+		<label for="email">Email <em>*</em></label>
+    	<input class="form-control" id="email" type="email" style="width: 270px; margin-top:0.5%"  th:field="*{email}" placeholder="prenom.nom@gmail.com" required="" pattern="[a-zA-Z]*.[a-zA-Z]*@gmail.com"/>
+			<span class="text-danger" th:errors="*{email}">  </span>
+	</div>
+    
+ 
+  <fieldset>
+    <legend>Choisissez Une Grade </legend>
+<table>
+<tr>
+<td>  <input id="maîtres-assistants" th:field="*{grade}" type="radio" name="g" value=" Maîtres-Assistants"/> Maîtres-Assistants</label></td>
+<td> <input id="assistants"   th:field="*{grade}"type="radio" name="g" value="Assistants"/> Assistants</label></td>
+<td> <input id="nstances de recrutement "  th:field="*{grade}"  type="radio" name="g" value="Instances De Recrutement"/> Instances De Recrutement</label></td></tr></table>
+<input type="submit" value="Ajouter">    
+    </fieldset>
+</form>
+<div align="Right">
+   <h3> Fichier d'enseignants </h3>
+    <a th:href="@{/enseignant/fichierEnsei}"/>
+   	<img  src="img/Logo_Microsoft_Excel_2013.png"  th:src="@{/img/Logo_Microsoft_Excel_2013.png}" align="right"/>
+   </div>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+    <html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+    <meta charset="utf-8">
+    <title>ISIMA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Styles -->
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link rel='stylesheet' id='prettyphoto-css'  th:href="@{css/prettyPhoto.css}" type='text/css' media='all'>
+    <link th:href="@{css/fontello.css}" type="text/css" rel="stylesheet">
+	<link th:href="@{css/AjoutEnsei.css}"  type="text/css" rel="stylesheet">
+
+    <!--[if lt IE 7]>
+            <link href="css/fontello-ie7.css" type="text/css" rel="stylesheet">  
+        <![endif]-->
+    <!-- Google Web fonts -->
+    <link th:href='@{http://fonts.googleapis.com/css?family=Quattrocento:400,700}' rel='stylesheet' type='text/css'>
+    <link th:href='@{http://fonts.googleapis.com/css?family=Patua+One}' rel='stylesheet' type='text/css'>
+    <link th:href='@{http://fonts.googleapis.com/css?family=Open+Sans}' rel='stylesheet' type='text/css'>
+    	
+	<style type="text/css">
+ 	table {
+ 		
+ 		border-collapse: collapse;
+ 		width: 70%;
+ 		padding: 15px;
+ 		font-size: 18px;
+ 		font-style:italic;
+ 		text-align: center;
+ 		border-right-style: solid;
+ 		border-spacing: 15px;
+ 		margin: 0 auto;
+ 		}
+ 	caption {
+ 	font-size: 23px;
+ 		font-style:italic;
+ 		text-align: center;
+ 		color: black;
+ 	}	
+ 	th{
+ 		background-color:dodgerblue;
+ 		color: white;
+ 		
+ 	}	
+ 	th,td {
+ 		border: 2px solid #ddd;
+ 		padding: 15px;
+ 		}		
+		</style>
+		</head>
+		 <body>
+    <div class="navbar-wrapper">
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+            <h1 class="brand"><a href="Acceuil.html">ISIMA</a></h1>
+            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+            <nav class="pull-right nav-collapse collapse">
+              <ul id="menu-main" class="nav">
+               <li><a title="ACCEUIL" th:href="@{/}">ACCEUIL</a></li>
+                <li><a title="EXAMEN" th:href="@{/examen/form}">EXAMEN</a></li>
+                <li><a title="ENSEIGNANT" th:href="@{/enseignant/form}">ENSEIGNANT</a></li>
+                <li><a title="SALLE" th:href="@{/salle/fichierSalle}">SALLE</a></li>
+                <li><a title="MATIERES" th:href="@{/matiere/form}" >MATIERE</a></li>
+                
+				<li><a title="Calendrier" th:href="@{/calendrier/fichierCalendrier}">CALENDRIER</a></li>
+				<li><a title="Fiche de Suivie" th:href="@{/fichSuivie/fichierFichSuivie}">Fich Suivie</a></li>
+                <li><a title="contact" th:href="@{/logout}">DECONNEXION</a></li>
+              </ul>
+            </nav>
+          </div>
+          <!-- /.container -->
+        </div>
+        <!-- /.navbar-inner -->
+      </div>
+      <!-- /.navbar -->
+    </div>
+    <!-- /.navbar-wrapper -->
+    <div id="top"></div>
+	<br>
+	<form action="#">
+  <p><i>Complétez le formulaire. Les champs marqué par </i><em>*</em> sont <em>obligatoires</em></p>
+    <legend>fiche de suivie  pour lundi</legend> 
+<table>
+		  <thead>
+		  <caption >les Fiche de suivie : 11/06/2019  </caption>
+		  	 <tr>
+				<th> Horaire </th>
+				<th>Consulter</th>
+		  	</tr>
+		  </thead>
+		 <tbody>
+		 <tr th:each="fichSuivie : ${listFichSuivie}">
+			<td > 09:00 - 10:00</td> 
+			<td > <a th:href="@{/fichSuivie/form(fichSuivieId=${fichSuivie.id})}">
+					Consulter
+					</a></td> 
+ 			
+		  </tr>
+		 </tbody>  
+		</table>
+		</form>
+		</html>
